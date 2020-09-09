@@ -1,0 +1,23 @@
+version: '2.0'
+services:
+  tomcat1:
+    build: ./tomcat1
+    ports:
+      - 8081:8080
+  tomcat2:
+    build: ./tomcat2
+    ports:
+      - 8082:8080
+  nginx:
+    build: ./nginx
+   # volumes: 
+     # - ./nginx/confs:/etc/nginx
+   # links:
+     # - tomcat1
+     # - tomcat2
+    depends_on:
+      - tomcat1
+      - tomcat2
+    ports:
+      - 8686:80
+
